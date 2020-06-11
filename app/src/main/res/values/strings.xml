@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Dados em SQLite</string>
-    <string name="appNome">Salvar dados em SQLite</string>
-    <string name="lblNome">Nome:</string>
-    <string name="lblFaixa">Faixa etária:</string>
-    <string name="btnCadastrar">CADASTRAR</string>
-    <string name="btnLimpar">LIMPAR</string>
-    <string name="lblCadastro">Usuários cadastrados:</string>
-
+    <string name="app_name">Data in SQLite</string>
+    <string name="appNome">Saving data in SQLite</string>
+    <string name="lblNome">Name:</string>
+    <string name="lblFaixa">Age range:</string>
+    <string name="btnCadastrar">REGISTER</string>
+    <string name="btnLimpar">CLEAR</string>
+    <string name="lblCadastro">Registered users:</string>
+    <string name="btnRemoverTodos">Remove all from DB</string>
 
 </resources>

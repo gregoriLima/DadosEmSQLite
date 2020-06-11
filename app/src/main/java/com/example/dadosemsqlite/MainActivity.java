@@ -11,8 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import java.util.ArrayList;
-import android.database.Cursor;
-import android.provider.ContactsContract;
+
 import android.provider.Settings;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -33,7 +32,7 @@ import org.greenrobot.greendao.query.Query;
 public class MainActivity extends AppCompatActivity implements View.
         OnClickListener {
 
-    private Button btnCadastrar, btnLimpar;
+    private Button btnCadastrar, btnLimpar, btnRemoveAll;
     private EditText nome;
 
     //atributos do DB
@@ -58,17 +57,17 @@ public class MainActivity extends AppCompatActivity implements View.
 
         //Lista com as faixas etárias para o Spinner
         ArrayList<String> faixasEtarias = new ArrayList<String>();
-        faixasEtarias.add("Menor de 18 anos");
-        faixasEtarias.add("Entre 18 e 20 anos");
-        faixasEtarias.add("Entre 20 e 25 anos");
-        faixasEtarias.add("Entre 25 e 30 anos");
-        faixasEtarias.add("Entre 30 e 35 anos");
-        faixasEtarias.add("Entre 35 e 40 anos");
-        faixasEtarias.add("Entre 40 e 45 anos");
-        faixasEtarias.add("Entre 45 e 50 anos");
-        faixasEtarias.add("Entre 50 e 55 anos");
-        faixasEtarias.add("Entre 55 e 60 anos");
-        faixasEtarias.add("Maior de 60 anos");
+        faixasEtarias.add("Under 18");
+        faixasEtarias.add("Between 18 and 20 years");
+        faixasEtarias.add("Between 20 and 25 years");
+        faixasEtarias.add("Between 25 and 30 years");
+        faixasEtarias.add("Between 30 and 35 years");
+        faixasEtarias.add("Between 35 and 40 years");
+        faixasEtarias.add("Between 40 and 45 years");
+        faixasEtarias.add("Between 45 and 50 years");
+        faixasEtarias.add("Between 50 and 55 years");
+        faixasEtarias.add("Between 55 and 60 years");
+        faixasEtarias.add("Over 60 years");
 
         //Spinner das faixas etárias
         s = (Spinner) findViewById(R.id.faixaSpinner);
@@ -84,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.
 
         btnLimpar = findViewById(R.id.btnLimpar);
         btnLimpar.setOnClickListener(this);
+
+        btnRemoveAll = findViewById(R.id.btnRemoverTodos);
+        btnRemoveAll.setOnClickListener(this);
 
 
         // SQLite database
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.
         //listView setando o adapter criado acima
         listaUsuarios.setAdapter(adapterUsuarios);
 
+        //in Test
         //rotina que verifica se há permissão para acessar os contatos no celular.
         //checkPermissão();
     }
@@ -117,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.
             //Toast.makeText(this, "teste!", Toast.LENGTH_LONG).show();
             //verifica se o campo nome foi preenchido
             if (nome.getText().toString().equals("")){
-                Toast.makeText(this, "Preencha seu nome!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Fill in the name!", Toast.LENGTH_LONG).show();
             } else {
 
                 //verifica se o usuário já existe pelo número do registro
@@ -134,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.
                     ObjUsuarioDao.insert(user);
 
 
-                    Toast.makeText(this, "Usuário salvo com sucesso!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "User saved successfully!", Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.
 
                 }
                 else
-                    Toast.makeText(this, "Usuário já registrado!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Registered user already!", Toast.LENGTH_LONG).show();
             }
 
         }
@@ -154,9 +157,21 @@ public class MainActivity extends AppCompatActivity implements View.
 
         }
 
+        if(view == btnRemoveAll){
+
+            ObjUsuarioDao.deleteAll();
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+
 
     }
 
+
+    //Verifica permissão para ler a agenda de contatos do celular
     private boolean checkPermissão(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {

@@ -44,7 +44,7 @@ public class usuario {
     @NonNull
     @Override
     public String toString() {
-        return "Usuário: " + this.nome + ", " + faixaIdade;
+        return "User: " + this.nome + ", " + faixaIdade;
     }
 
     public String getFaixaIdade() {
