@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Dados em SQLite</string>
+    <string name="appNome">Salvar dados em SQLite</string>
+    <string name="lblNome">Nome:</string>
+    <string name="lblFaixa">Faixa etária:</string>
+    <string name="btnCadastrar">CADASTRAR</string>
+    <string name="btnLimpar">LIMPAR</string>
+    <string name="lblCadastro">Usuários cadastrados:</string>
+
+
+</resources>
