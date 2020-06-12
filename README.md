@@ -145,3 +145,4 @@ public class UsuarioDao extends AbstractDao<Usuario, Long> {
 ![](https://images2.imgbox.com/71/6d/oNnACvOO_o.png)
 
 
+@ Grégori Fernandes de Lima 
